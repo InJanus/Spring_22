@@ -15,8 +15,8 @@ public class bs_population {
         final int a = 1, b = 100; //constants a and b for the equation below
         long myret;
 //        myret = (long)(-1*(Math.pow((a-x),2)+b*(y-Math.pow(x,2)))); //since most of the function is negative, I added a -1 to the fitness function making it work for the roulette_wheel_selection function
-//        myret = x*y;
-        myret = (long)(-1*(Math.pow(x/b,2)) + b);
+        myret = x*y;
+//        myret = (long)(-1*(Math.pow(x/b,2)) + y);
 //        if(myret < 0){
 //            return 0;
 //        }else{
