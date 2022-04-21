@@ -2,8 +2,9 @@ package com.company;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
-public class Main {
+public class Main_EA {
 
     public static void main(String[] args) {
 	// write your code here
@@ -28,17 +29,19 @@ public class Main {
         System.out.println(mypopulation);
 
         int generation_count = 0;
-        while(generation_count < Integer.parseInt(myargs.get("generation_maxcount"))){
+        while(generation_count < Integer.parseInt(myargs.get("generation_maxcount")) && Math.abs(mypopulation.most_fit()) > 0.000001){
             //first, we need to generate the chlidren of the population
             //get a random number of my parents
+            generation_count++;
+            System.out.print(generation_count + "," + mypopulation.get_average_fitness() + "," + mypopulation.most_fit() + "," + mypopulation.get_performance() + "\n");
             for(int i = 0; i < Integer.parseInt(myargs.get("lambda")); i++){mychildren.set_individual(mypopulation.parentSelection_uniformRandom(), i);}
             //recombination of parent genes
             double[] temp = mychildren.get_individual(0);
             for(int i = 0; i < Integer.parseInt(myargs.get("lambda")); i++){
                 if(i == (Integer.parseInt(myargs.get("lambda"))-1)){
-                    mychildren.set_individual(mychildren.recombination_discrete(mychildren.get_individual(i), temp), i);
+                    mychildren.set_individual(mychildren.recombination_intermediate(mychildren.get_individual(i), temp, Double.parseDouble(myargs.get("alpha"))), i);
                 }else {
-                    mychildren.set_individual(mychildren.recombination_discrete(mychildren.get_individual(i), mychildren.get_individual(i + 1)), i);
+                    mychildren.set_individual(mychildren.recombination_intermediate(mychildren.get_individual(i), mychildren.get_individual(i + 1), Double.parseDouble(myargs.get("alpha"))), i);
                 }
             }
             //now mutate children
@@ -46,10 +49,10 @@ public class Main {
                 mychildren.mutation_gaussian(i);
             }
             mypopulation = mychildren.survivorSelection_mu_lambda(Integer.parseInt(myargs.get("mu")));
-            generation_count++;
-            System.out.println(mypopulation);
-        }
 
+//            System.out.print(mypopulation.get_points(generation_count));
+        }
+        System.out.print(++generation_count + "," + mypopulation.get_average_fitness() + "," + mypopulation.most_fit() + "," + mypopulation.get_performance() + "\n");
         System.out.println(mypopulation);
     }
 }
