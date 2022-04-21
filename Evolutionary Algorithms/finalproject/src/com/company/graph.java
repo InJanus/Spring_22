@@ -13,23 +13,24 @@ public class graph extends JPanel {
     int precisionRatio; //how many blocks on the top axis as a ratio
     float heightLimit; //how tall the color is for the height
 
-    graph(float X, float Y, int index, int ratio, float limit){
-        Xdimension = 900;
-        Ydimension = 900;
-        XSearch = X;
-        YSearch = Y;
+    graph(int X, int Y, int index, int ratio, float limit){
+        Xdimension = X;
+        Ydimension = Y;
+        XSearch = 10.0F;
+        YSearch = 10.0F;
         setFunction = index;
         precisionRatio = ratio;
         heightLimit = limit;
-        setSize(Xdimension, Ydimension);
-        setLayout(null);
+//        setSize(Xdimension, Ydimension);
+//        setLayout(new FlowLayout());
         setVisible(true);
+        repaint();
 
 //        addWindowListener (new WindowAdapter() {public void windowClosing (WindowEvent e) {dispose();}});
     }
 
     public void paint(Graphics g) {
-        Insets myinsets = getInsets();
+//        Insets myinsets = getInsets();
 //        System.out.println(myinsets.top);
         Xdimension = getWidth();
         Ydimension = getHeight();
@@ -71,7 +72,10 @@ public class graph extends JPanel {
 
     private float xDecode(int x){return ((x/((Xdimension/XSearch)/2))-XSearch);}
     private float yDecode(int y){return ((y/((Ydimension/YSearch)/2))-YSearch);}
-    private float yInset(int y){return (0);}
+
+    public void setLimit(float limit){
+        heightLimit = limit;
+    }
 
     public void setSearchSpace(float X, float Y){
         XSearch = X;
