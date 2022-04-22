@@ -22,7 +22,7 @@ public class Main {
 
 //        graphics mygraph = new graphics(Integer.parseInt(myargs.get("window_size")));
 //        mygraph.setVisible(true);
-        settings mysettings = new settings();
-        mysettings.setVisible(true);
+        vis myvis = new vis();
+        myvis.setVisible(true);
     }
 }

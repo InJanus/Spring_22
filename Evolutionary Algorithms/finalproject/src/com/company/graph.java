@@ -48,13 +48,13 @@ public class graph extends JPanel {
                 value = fitnessFunction(xDecode(x), yDecode(y));
                 if(value >= 0) {
                     if (value > heightLimit){
-                        g.setColor(Color.getHSBColor(0.0F, 1.0F, 1.0F));
+                        g.setColor(Color.getHSBColor(0.33F, 1.0F, 1.0F));
                     }else {
                         g.setColor(Color.getHSBColor(0.0F, value / heightLimit, 1.0F));
                     }
                 }else{
                     if ((-1)*value > heightLimit){
-                        g.setColor(Color.getHSBColor(0.66F, 1.0F, 1.0F));
+                        g.setColor(Color.getHSBColor(0.83F, 1.0F, 1.0F));
                     }else{
                         g.setColor(Color.getHSBColor(0.66F, (-1)*value/heightLimit, 1.0F));
                     }
